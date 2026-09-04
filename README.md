@@ -1,36 +1,74 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Rishabh Gupta — Portfolio
 
-## Getting Started
+A production-ready personal portfolio website built with Next.js (App Router), TypeScript, and Tailwind CSS.
 
-First, run the development server:
+Live sections: Hero, About, Experience (internships), Case Files (projects), Education, Certifications, Capabilities, and Contact — plus a dedicated case-study page per project at `/projects/[slug]`.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+## Tech stack
+
+- **Framework:** Next.js 16 (App Router, TypeScript, React 19)
+- **Styling:** Tailwind CSS v4, self-hosted fonts (`@fontsource/fraunces`, `@fontsource/inter` — no external font requests at runtime)
+- **Content:** structured data files under `src/data/`, not hardcoded in components
+- **Deployment target:** Vercel (static-friendly — every route is prerendered at build time)
+
+## Project structure
+
+```
+src/
+  app/                    Routes (App Router)
+    page.tsx              Home page — assembles all sections
+    layout.tsx             Root layout, global <head> metadata
+    projects/[slug]/       Dynamic case-study route
+    sitemap.ts, robots.ts  SEO file conventions
+    not-found.tsx           404 page
+    globals.css             Design tokens (colors, fonts) + Tailwind
+  components/              Presentational + section components
+  data/                    Content: profile, experience, projects, education,
+                            certifications, nav — edit these to update the site
+public/
+  images/                  Optimized portrait + OG image (JPG + WebP)
+  documents/               Downloadable résumé + certificate PDFs
+  favicon.svg
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+### Editing content
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+All copy lives in `src/data/*.ts`. To update a project, an internship, a certification, or the résumé link, edit the relevant data file — no component code needs to change. Every project detail page is generated automatically from `src/data/projects.ts` via `generateStaticParams`.
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## Getting started
 
-## Learn More
+Requires Node.js 20+.
 
-To learn more about Next.js, take a look at the following resources:
+```bash
+npm install
+npm run dev
+```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+Open [http://localhost:3000](http://localhost:3000).
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## Production build
 
-## Deploy on Vercel
+```bash
+npm run build
+npm run start
+```
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+`npm run build` prerenders every route (home + all project case files) as static HTML — verified locally with zero TypeScript errors, zero ESLint errors, and zero external network requests (fonts and images are self-hosted).
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## Deploying to Vercel
+
+1. Push this repository to GitHub (or GitLab/Bitbucket).
+2. In Vercel, "Add New Project" → import the repository. Vercel auto-detects Next.js — no configuration needed.
+3. Build command: `next build` (default). Output: managed automatically by the Next.js framework preset.
+4. No environment variables are required — the site has no backend, database, or third-party API keys.
+5. Deploy. Every push to the default branch redeploys automatically.
+
+### Custom domain / metadata
+
+Before going live, update `siteUrl` in `src/app/layout.tsx`, `src/app/sitemap.ts`, and `src/app/robots.ts` to your real production domain (currently a placeholder: `https://rishabhgupta.example.com`).
+
+## Notes
+
+- No secrets, API keys, or personal Vercel account details are stored in this repository.
+- The résumé and certificate PDFs under `public/documents/` are the candidate's own documents, included so visitors can view/download them directly.
+- Reduced-motion and keyboard-focus styles are respected throughout (see `globals.css`).
