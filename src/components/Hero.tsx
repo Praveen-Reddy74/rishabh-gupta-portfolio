@@ -32,7 +32,7 @@ export default function Hero() {
               </Link>
             </div>
 
-            <dl className="mt-14 grid grid-cols-2 gap-x-6 gap-y-8 border-t border-line pt-8 sm:grid-cols-4">
+            <dl className="mt-14 grid grid-cols-3 gap-x-6 gap-y-8 border-t border-line pt-8">
               {stats.map((stat) => (
                 <div key={stat.label} className="flex flex-col-reverse">
                   <dt className="mt-1 text-xs leading-snug text-ink-soft">{stat.label}</dt>
@@ -52,10 +52,10 @@ export default function Hero() {
                 sizes="(min-width: 1024px) 32rem, 80vw"
                 className="object-cover"
               />
-            </div>
-            <div className="absolute -bottom-6 -left-6 hidden max-w-[13rem] rounded-2xl border border-line bg-panel p-4 shadow-lg sm:block">
-              <p className="font-display text-sm font-medium text-ink">PGDM, Great Lakes Institute of Management</p>
-              <p className="mt-1 text-xs text-ink-soft">Batch of 2025–2027 &middot; Gurgaon</p>
+              <div className="absolute inset-x-4 bottom-4 rounded-2xl border border-line bg-panel p-3.5 shadow-lg sm:inset-x-auto sm:left-5 sm:right-5 sm:max-w-[13rem] sm:p-4">
+                <p className="font-display text-sm font-medium text-ink">PGDM, Great Lakes Institute of Management</p>
+                <p className="mt-1 text-xs text-ink-soft">Batch of 2025–2027 &middot; Gurgaon</p>
+              </div>
             </div>
           </div>
         </div>

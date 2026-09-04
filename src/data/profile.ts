@@ -16,12 +16,12 @@ export const profile = {
   resumeHref: "/documents/rishabh-gupta-resume.pdf",
   socials: {
     email: "mailto:rishavgupta00998@gmail.com",
+    linkedin: "https://www.linkedin.com/in/rishabhgupta2004/",
   },
 };
 
 export const stats = [
   { value: "2", label: "Corporate internships" },
   { value: "5", label: "Analytics & strategy projects" },
-  { value: "€292M+", label: "Export pipeline mapped at JSL" },
   { value: "3", label: "Professional certifications" },
 ];

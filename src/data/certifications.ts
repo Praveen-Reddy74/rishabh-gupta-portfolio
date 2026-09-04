@@ -4,38 +4,47 @@ export type Certification = {
   year: string;
   duration?: string;
   href?: string;
+  /** "featured" = explicitly listed on Rishabh's CV; "supplementary" = supporting sub-badge/certificate. */
+  tier: "featured" | "supplementary";
 };
 
 export const certifications: Certification[] = [
+  // CV-listed certifications (highest priority)
   {
     title: "Google Data Analytics",
     issuer: "Coursera",
     year: "2025",
     duration: "4 weeks",
+    tier: "featured",
   },
   {
     title: "Power BI",
     issuer: "Microsoft Learning Path",
     year: "2025",
     duration: "4 weeks",
-  },
-  {
-    title: "Design Power BI reports",
-    issuer: "Microsoft Learn",
-    year: "2026",
-    href: "/documents/microsoft-design-power-bi-reports.pdf",
-  },
-  {
-    title: "Scope report design requirements",
-    issuer: "Microsoft Learn",
-    year: "2026",
-    href: "/documents/microsoft-scope-report-design.pdf",
+    tier: "featured",
   },
   {
     title: "Statistical Decision-Making Tools",
     issuer: "Great Learning",
     year: "2025",
     duration: "4 weeks",
+    tier: "featured",
+  },
+  // Supplementary Microsoft Learn sub-badges (earned as part of the Power BI learning path)
+  {
+    title: "Design Power BI reports",
+    issuer: "Microsoft Learn",
+    year: "2026",
+    href: "/documents/microsoft-design-power-bi-reports.pdf",
+    tier: "supplementary",
+  },
+  {
+    title: "Scope report design requirements",
+    issuer: "Microsoft Learn",
+    year: "2026",
+    href: "/documents/microsoft-scope-report-design.pdf",
+    tier: "supplementary",
   },
 ];
 
